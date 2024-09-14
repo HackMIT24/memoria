@@ -22,9 +22,19 @@ const featuresComponents: { title: string, href: string, description: string}[] 
 		description: "Games Memoria offers to help patients."
 	},
 	{
-		title: "Games",
-		href: "/features/games",
-		description: "Games Memoria offers to help patients."
+		title: "Journal",
+		href: "/features/journal",
+		description: "Journal to keep in the brain fit."
+	},
+	{
+		title: "AI Assistant",
+		href: "/features/assistant",
+		description: "Chat with a custom AI assistant, trained with your background, for any type of assistance."
+	},
+	{
+		title: "Secret Journal",
+		href: "/features/secrets",
+		description: "Store essential information for reinforcement to combat forgetfulness."
 	},
 ]
 const aboutComponents: { title: string; href: string; description: string }[] = [
@@ -33,6 +43,11 @@ const aboutComponents: { title: string; href: string; description: string }[] = 
 		href: "/about/motivation",
 		description:
 			"Why we created Memoria.",
+	},
+	{
+		title: "Meet the Team",
+		href: "/about/team",
+		description: "Meet the team behind Memoria."
 	},
 	{
 		title: "Meet the Team",
@@ -87,6 +102,13 @@ export default function Navbar() {
 					</NavigationMenuItem>
 				</SignedOut>
 				<SignedIn>
+					<NavigationMenuItem>
+						<Link href={'/app'}>
+							<NavigationMenuItem>
+									App
+							</NavigationMenuItem>
+						</Link>
+					</NavigationMenuItem>
 					<NavigationMenuItem>
 						<SignOutButton>
 							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
