@@ -6,6 +6,7 @@ import {
 	UserButton
 } from '@clerk/nextjs'
 import './globals.css'
+import Navbar from "@/components/Navbar";
 
 export const metadata = {
 	title: "Memoria",
@@ -21,15 +22,16 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang="en">
-			<body>
-			<SignedOut>
-				<SignInButton />
-			</SignedOut>
-			<SignedIn>
-				<UserButton />
-			</SignedIn>
-			{children}
-			</body>
+				<body>
+					<Navbar />
+					<SignedOut>
+						<SignInButton />
+					</SignedOut>
+					<SignedIn>
+						<UserButton />
+					</SignedIn>
+					{children}
+				</body>
 			</html>
 		</ClerkProvider>
 	)
