@@ -16,22 +16,22 @@ import {
 
 const components: { title: string; href: string; description: string }[] = [
 	{
-		title: "Alert Dialog",
-		href: "/docs/primitives/alert-dialog",
+		title: "About Us",
+		href: "/about",
 		description:
-			"A modal dialog that interrupts the user with important content and expects a response.",
+			"About Memoria, and the team that created it.",
 	},
 	{
-		title: "Hover Card",
-		href: "/docs/primitives/hover-card",
+		title: "Motivation",
+		href: "/about/motivation",
 		description:
-			"For sighted users to preview content available behind a link.",
+			"Why we created Memoria.",
 	},
 	{
-		title: "Progress",
-		href: "/docs/primitives/progress",
+		title: "Features",
+		href: "/features",
 		description:
-			"Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+			"How Memoria helps patients ",
 	},
 	{
 		title: "Scroll-area",
