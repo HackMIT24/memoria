@@ -17,6 +17,12 @@ import {SignedIn, SignedOut, SignInButton, SignOutButton} from "@clerk/nextjs";
 
 const featuresComponents: { title: string, href: string, description: string}[] = [
 	{
+		title: "Home",
+		href: "/",
+		description:
+			"Learn about Memoria, the revolutionary way to manage Alzheimer's.",
+	},
+	{
 		title: "Games",
 		href: "/features/games",
 		description: "Games Memoria offers to help patients."
@@ -58,7 +64,7 @@ const aboutComponents: { title: string; href: string; description: string }[] = 
 
 export default function Navbar() {
 	return (
-		<NavigationMenu>
+		<NavigationMenu className={'bg-white w-screen'}>
 			<NavigationMenuList>
 				<NavigationMenuItem>
 					<NavigationMenuTrigger>Memoria</NavigationMenuTrigger>
@@ -104,9 +110,9 @@ export default function Navbar() {
 				<SignedIn>
 					<NavigationMenuItem>
 						<Link href={'/app'}>
-							<NavigationMenuItem>
+							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 									App
-							</NavigationMenuItem>
+							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
 					<NavigationMenuItem>

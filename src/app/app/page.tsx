@@ -4,8 +4,8 @@ import {useQuery} from "convex/react";
 import {api} from "../../../convex/_generated/api";
 import {UserIdentity} from "convex/server";
 import {Card, CardContent, CardFooter, CardHeader, CardTitle} from "@/components/ui/card";
-import MemoryGame from "@/components/memorygame";
 import Link from "next/link";
+import {Button} from "@/components/ui/button";
 
 class Activity {
 	title: string;
@@ -21,21 +21,31 @@ class Activity {
 const activities: Activity[] = [
 	new Activity(
 		"Journal",
-		"/journal",
-		"Keep a log of what happened today. "
+		"/app/journal",
+		"Keep a log of what happened today, record your thoughts, or browse your past thoughts. "
+	),
+	new Activity(
+		"AI Assistant",
+		"/app/assistant",
+		"Chat with an AI Assistant to receive insights, hold a conversation, and more."
+	),
+	new Activity(
+		"Secret Drawer",
+		"/app/secrets",
+		"Review and relive the most important information and moments saved about you. "
 	)
 ]
 
 const games: Activity[] = [
 	new Activity(
 		"Word Search",
-		"/wordsearch",
+		"/app/wordsearch",
 		"Find the given words amidst a sea of letters."
 	),
 	new Activity(
 		"Memory",
-		"/memory",
-		"Test your "
+		"/app/memory",
+		"Test your abilities in this fun emoji-matching game."
 	)
 ]
 
@@ -50,7 +60,7 @@ function ActivityCard({ game }: { game: Activity }) {
 					{ game.description }
 				</CardContent>
 				<CardFooter>
-					meow
+					<Button className={'bg-blue-500'}> Launch</Button>
 				</CardFooter>
 			</Card>
 		</Link>

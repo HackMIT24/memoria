@@ -9,13 +9,13 @@ import {
 } from '@clerk/nextjs'
 import './globals.css'
 import Navbar from "@/components/Navbar";
-import { Inter } from 'next/font/google';
+import { Roboto_Mono } from 'next/font/google';
 import {ConvexProviderWithClerk} from "convex/react-clerk";
 import {ConvexReactClient} from "convex/react";
 
 const convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL as string);
 
-const cabin = Inter ({
+const robotoMono = Roboto_Mono ({
 	subsets: ['latin'],
 	style: "normal",
 })
@@ -29,7 +29,7 @@ export default function RootLayout({
 		<ClerkProvider>
 			<ConvexProviderWithClerk client={convex} useAuth={useAuth}>
 				<html lang="en">
-					<body className={`p-3 ${cabin.className}`}>
+					<body className={`p-3 ${robotoMono.className}`}>
 						<Navbar />
 						<div className="p-3">
 							{children}
