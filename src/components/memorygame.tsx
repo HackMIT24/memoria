@@ -22,7 +22,7 @@ const MemoryGame = () => {
     { image: '🐰', name: 'Rabbit' },
     { image: '🦊', name: 'Fox' },
     { image: '🐻', name: 'Bear' },
-    { image: '🐼', name: 'Panda' },
+    { image: '🐼', name: 'Panda' }
   ];
 
   useEffect(() => {
