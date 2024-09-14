@@ -42,43 +42,72 @@ const MemoryGame = () => {
   };
 
   const handleCardClick = (clickedCard: Card) => {
-    if (flippedCards.length === 2 || matchedCards.includes(clickedCard.id)) return;
-
+    if (gameEnded || flippedCards.length === 2 || matchedCards.includes(clickedCard.id)) return;
+  
     const newFlippedCards = [...flippedCards, clickedCard];
     setFlippedCards(newFlippedCards);
     setMoves(moves + 1);
-
+  
     if (newFlippedCards.length === 2) {
       if (newFlippedCards[0].name === newFlippedCards[1].name) {
-        setMatchedCards([...matchedCards, newFlippedCards[0].id, newFlippedCards[1].id]);
+        const newMatchedCards = [...matchedCards, newFlippedCards[0].id, newFlippedCards[1].id];
+        setMatchedCards(newMatchedCards);
+        if (newMatchedCards.length === cards.length) {
+          setGameEnded(true);
+        }
       }
       setTimeout(() => setFlippedCards([]), 1000);
     }
   };
 
+  const [gameEnded, setGameEnded] = useState(false);
+
+  const resetGame = () => {
+    initializeGame();
+    setFlippedCards([]);
+    setMatchedCards([]);
+    setMoves(0);
+    setGameEnded(false);
+  };
+  
   return (
-    <div className="grid grid-cols-4 gap-4">
-      {cards.map((card) => (
-        <div
-          key={card.id}
-          className={`w-24 h-24 flex flex-col items-center justify-center text-sm cursor-pointer ${
-            flippedCards.includes(card) || matchedCards.includes(card.id) ? 'bg-blue-200' : 'bg-gray-200'
-          }`}
-          onClick={() => handleCardClick(card)}
-        >
-          {flippedCards.includes(card) || matchedCards.includes(card.id) ? (
-            <> 
-              <div className="text-4xl mb-1">{card.image}</div>
-              <div className="text-xs">{card.name}</div>
-            </>
-          ) : (
-            '?'
-          )}
-        </div>
-      ))}
-      <div className="col-span-4 mt-4">Moves: {moves}</div>
-    </div>
-  );
+      <div className="flex flex-col items-center">
+        {!gameEnded ? (
+          <div className="grid grid-cols-4 gap-4">
+            {cards.map((card) => (
+              <div
+                key={card.id}
+                className={`w-24 h-24 flex flex-col items-center justify-center text-sm cursor-pointer ${
+                  flippedCards.includes(card) || matchedCards.includes(card.id) ? 'bg-blue-200' : 'bg-gray-200'
+                }`}
+                onClick={() => handleCardClick(card)}
+              >
+                {flippedCards.includes(card) || matchedCards.includes(card.id) ? (
+                  <>
+                    <img src={card.image} alt={card.name} className="w-16 h-16 object-cover mb-1" />
+                    <div className="text-xs">{card.name}</div>
+                  </>
+                ) : (
+                  '?'
+                )}
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center">
+            <h2 className="text-2xl font-bold mb-4">Congratulations!</h2>
+            <p className="mb-4">You've completed the game in {moves} moves!</p>
+            <button
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+              onClick={resetGame}
+            >
+              Play Again
+            </button>
+          </div>
+        )}
+        <div className="mt-4">Moves: {moves}</div>
+      </div>
+    );
 };
 
 export default MemoryGame;
