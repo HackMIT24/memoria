@@ -7,6 +7,13 @@ import {
 } from '@clerk/nextjs'
 import './globals.css'
 import Navbar from "@/components/Navbar";
+import { Poppins } from 'next/font/google';
+
+const poppins = Poppins({
+	subsets: ['latin'],
+	style: "normal",
+	weight: '400',
+})
 
 export const metadata = {
 	title: "Memoria",
@@ -22,15 +29,11 @@ export default function RootLayout({
 	return (
 		<ClerkProvider>
 			<html lang="en">
-				<body>
+				<body className={`p-3 ${poppins.className}`}>
 					<Navbar />
-					<SignedOut>
-						<SignInButton />
-					</SignedOut>
-					<SignedIn>
-						<UserButton />
-					</SignedIn>
-					{children}
+					<div className="p-3">
+						{children}
+					</div>
 				</body>
 			</html>
 		</ClerkProvider>
