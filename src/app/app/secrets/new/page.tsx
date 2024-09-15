@@ -1,5 +1,5 @@
 import React from 'react';
-import SecretDrawerForm from 'app/secrets';
+import SecretDrawerForm from '@/components/secrets';
 
 const SecretDrawerPage: React.FC = () => {
   return (
