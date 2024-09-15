@@ -1,4 +1,6 @@
+import Link from 'next/link';
 import {useCallback, useEffect, useState} from 'react';
+import { Button } from './ui/button';
 
 export interface CardItem {
 	url: string;
@@ -103,8 +105,8 @@ const MemoryGame: React.FC<MemoryGameProps> = ({cardItems}) => {
 				</div>
 			)}
 			<div className="mt-4">Moves: {moves}</div>
+      <Link href="/app/memory/add"><Button type="button" className="m-3">Add More Cards</Button> </Link>
 		</div>
 	);
 };
-
 export default MemoryGame;

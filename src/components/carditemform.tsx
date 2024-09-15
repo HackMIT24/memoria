@@ -1,4 +1,7 @@
 import React, {useState} from 'react';
+import { Button } from './ui/button';
+import { Input } from './ui/input';
+import Link from 'next/link';
 
 const CardInputForm: React.FC<{
 	onAddCard: ({url, label}: { url: string, label: string }) => void,
@@ -18,22 +21,25 @@ const CardInputForm: React.FC<{
 
 	return (
 		<form onSubmit={handleSubmit}>
-			<input
+			<Input
 				type="text"
 				value={url}
 				onChange={(e) => setUrl(e.target.value)}
 				placeholder="Enter image URL"
 				required
+                className="m-3"
 			/>
-			<input
+			<Input
 				type="text"
 				value={label}
 				onChange={(e) => setLabel(e.target.value)}
 				placeholder="Enter name"
 				required
+                className="m-3"
 			/>
-			<button type="submit">Add Card</button>
-			<button type="button" onClick={onFinish}>Finish</button>
+			<Button type="submit" className="m-3">Add Card</Button>
+			<Link href="/app/memory"><Button type="button" onClick={onFinish} className="m-3">Finish</Button> </Link>
+        
 		</form>
 	);
 };
