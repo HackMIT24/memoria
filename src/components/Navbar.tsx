@@ -38,21 +38,21 @@ const featuresComponents: { title: string, href: string, description: string }[]
 		description: "Chat with a custom AI assistant, trained with your background, for any type of assistance."
 	},
 	{
-		title: "Secret Journal",
-		href: "/app/secrets",
+		title: "Secret Drawer",
+		href: "/app/secrets/new",
 		description: "Store essential information for reinforcement to combat forgetfulness."
 	},
 ]
 const aboutComponents: { title: string; href: string; description: string }[] = [
 	{
 		title: "Motivation",
-		href: "/about/motivation",
+		href: "/app/motivation",
 		description:
 			"Why we created Memoria.",
 	},
 	{
 		title: "Meet the Team",
-		href: "/about/team",
+		href: "/app/teampage",
 		description: "Meet the team behind Memoria."
 	},
 ]
