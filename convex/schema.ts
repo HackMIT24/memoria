@@ -11,12 +11,12 @@ export default defineSchema({
 				label: v.string()
 			})
 		),
-		secrets: v.array(
+		secrets: v.optional(v.array(
 			v.object({
 				prompt: v.string(),
 				answer: v.string(),
 			})
-		),
+		)),
 	}).index("by_token", ["tokenIdentifier"]),
 	journal: defineTable({
 		title: v.string(),

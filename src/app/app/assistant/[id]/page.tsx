@@ -8,13 +8,13 @@ import {api} from "../../../../../convex/_generated/api";
 
 export default function AssistantPage({ params }: { params: { id: string } }) {
 		const [messages, setMessages] = useState<{ text: string; isUser?: boolean }[]>([]);
-		const cont = useMutation(api.ai.continueConversation);
+		const conversation = useMutation(api.ai.continueConversation);
 		const handleSendMessage = async (userMessage: string) => {
 			const newMessages = [...messages, { text: userMessage, isUser: true }];
 			setMessages(newMessages);
 
-			const response = cont({ conversationId: params.id, nextMessage: userMessage });
-			setMessages([...newMessages, { text: response.reply }]);
+			const response = conversation({ conversationId: params.id, nextMessage: userMessage });
+			setMessages([...response]);
 		};
 
 		return (
