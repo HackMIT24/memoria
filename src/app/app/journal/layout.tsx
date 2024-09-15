@@ -7,15 +7,15 @@ import {useQuery} from "convex/react";
 import {api} from "../../../../convex/_generated/api";
 import {JournalEntry} from "@/data/JournalEntry";
 
-function JournalSidebarEntry({ journalEntry }: { journalEntry: JournalEntry}) {
+function JournalSidebarEntry({journalEntry}: { journalEntry: JournalEntry }) {
 	return (
-		<Link href={`/app/journal/{id}`}>
-			<Card className={'w-52'}>
+		<Link href={`/app/journal/${journalEntry.id}`}>
+			<Card className={'w-52 mb-3'}>
 				<CardHeader>
-					<CardTitle>{ journalEntry.title } </CardTitle>
+					<CardTitle>{journalEntry.title} </CardTitle>
 				</CardHeader>
 				<CardContent>
-					<p>{ journalEntry.date.toLocaleDateString() } - {journalEntry.content.substring(-30)}</p>
+					<p>{journalEntry.date.toLocaleDateString()} - {journalEntry.content.substring(-30)}</p>
 				</CardContent>
 			</Card>
 		</Link>
@@ -23,7 +23,7 @@ function JournalSidebarEntry({ journalEntry }: { journalEntry: JournalEntry}) {
 }
 
 
-export default function JournalLayout({ children }: { children: React.ReactNode }) {
+export default function JournalLayout({children}: { children: React.ReactNode }) {
 	const journalPages = useQuery(api.journal.getAll);
 
 	return (
@@ -32,14 +32,23 @@ export default function JournalLayout({ children }: { children: React.ReactNode 
 			<div className="flex flex-row">
 				<div className="flex flex-col m-3 pr-3">
 					<div className="flex flex-row my-3">
-						<h3 className='text-lg mx-3 px-3'>Entries</h3> <Button className={'text-xs bg-blue-500'}>Create</Button>
+						<h3 className='text-lg mx-3 px-3'>Entries</h3>
+						<Link href={'/app/journal/create'}>
+							<Button className={'text-xs bg-blue-500'}>Create</Button>
+						</Link>
 					</div>
-					{journalPages?.map(journalEntry => (
-						<JournalSidebarEntry journalEntry={journalEntry} />
+					{journalPages?.map(rawJournalEntry => (
+						<JournalSidebarEntry key={rawJournalEntry._id} journalEntry={new JournalEntry(
+							rawJournalEntry._id,
+							rawJournalEntry.user,
+							rawJournalEntry.title,
+							new Date(rawJournalEntry.date),
+							rawJournalEntry.content
+						)}/>
 					))}
 				</div>
 				<div className="flex m-3">
-					{ children }
+					{children}
 				</div>
 			</div>
 		</div>

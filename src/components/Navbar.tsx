@@ -3,7 +3,7 @@
 import * as React from "react"
 import Link from "next/link"
 
-import { cn } from "@/lib/utils"
+import {cn} from "@/lib/utils"
 import {
 	NavigationMenu,
 	NavigationMenuContent,
@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/navigation-menu"
 import {SignedIn, SignedOut, SignInButton, SignOutButton} from "@clerk/nextjs";
 
-const featuresComponents: { title: string, href: string, description: string}[] = [
+const featuresComponents: { title: string, href: string, description: string }[] = [
 	{
 		title: "Home",
 		href: "/",
@@ -64,12 +64,12 @@ const aboutComponents: { title: string; href: string; description: string }[] = 
 
 export default function Navbar() {
 	return (
-		<NavigationMenu className={'bg-white w-screen'}>
+		<NavigationMenu className={'w-screen flex flex-row'}>
 			<NavigationMenuList>
 				<NavigationMenuItem>
 					<NavigationMenuTrigger>Memoria</NavigationMenuTrigger>
 					<NavigationMenuContent>
-						<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+						<ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
 							{featuresComponents.map((component) => (
 								<ListItem
 									key={component.title}
@@ -111,7 +111,7 @@ export default function Navbar() {
 					<NavigationMenuItem>
 						<Link href={'/app'}>
 							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
-									App
+								App
 							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
@@ -131,7 +131,7 @@ export default function Navbar() {
 const ListItem = React.forwardRef<
 	React.ElementRef<"a">,
 	React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
+>(({className, title, children, ...props}, ref) => {
 	return (
 		<li>
 			<NavigationMenuLink asChild>
