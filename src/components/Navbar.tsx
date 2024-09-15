@@ -46,13 +46,13 @@ const featuresComponents: { title: string, href: string, description: string }[]
 const aboutComponents: { title: string; href: string; description: string }[] = [
 	{
 		title: "Motivation",
-		href: "/about/motivation",
+		href: "/app/motivation",
 		description:
 			"Why we created Memoria.",
 	},
 	{
 		title: "Meet the Team",
-		href: "/about/team",
+		href: "/app/teampage",
 		description: "Meet the team behind Memoria."
 	},
 ]
