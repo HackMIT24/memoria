@@ -13,8 +13,8 @@ export default function AssistantPage({ params }: { params: { id: string } }) {
 			const newMessages = [...messages, { text: userMessage, isUser: true }];
 			setMessages(newMessages);
 
-			const response = conversation({ conversationId: params.id, nextMessage: userMessage });
-			setMessages([...response]);
+			const response = await conversation({ conversationId: params.id, nextMessage: userMessage });
+			setMessages([...response.messages.map(message => ({ text: message.content, isUser: message.role === "user" }))]);
 		};
 
 		return (
@@ -26,5 +26,4 @@ export default function AssistantPage({ params }: { params: { id: string } }) {
 				</div>
 			</div>
 		);
-	};
-}
+};
