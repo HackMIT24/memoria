@@ -24,7 +24,7 @@ const featuresComponents: { title: string, href: string, description: string }[]
 	},
 	{
 		title: "Games",
-		href: "/app",
+		href: "/app/memory",
 		description: "Games Memoria offers to help patients."
 	},
 	{

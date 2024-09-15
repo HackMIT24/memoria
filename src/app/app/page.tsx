@@ -39,11 +39,6 @@ const activities: Activity[] = [
 
 const games: Activity[] = [
 	new Activity(
-		"Word Search",
-		"/app/wordsearch",
-		"Find the given words amidst a sea of letters."
-	),
-	new Activity(
 		"Memory",
 		"/app/memory",
 		"Test your abilities in this fun emoji-matching game."
