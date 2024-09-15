@@ -24,22 +24,22 @@ const featuresComponents: { title: string, href: string, description: string }[]
 	},
 	{
 		title: "Games",
-		href: "/features/games",
+		href: "/app",
 		description: "Games Memoria offers to help patients."
 	},
 	{
 		title: "Journal",
-		href: "/features/journal",
+		href: "/app/journal",
 		description: "Journal to keep in the brain fit."
 	},
 	{
 		title: "AI Assistant",
-		href: "/features/assistant",
+		href: "/app/assistant",
 		description: "Chat with a custom AI assistant, trained with your background, for any type of assistance."
 	},
 	{
 		title: "Secret Journal",
-		href: "/features/secrets",
+		href: "/app/secrets",
 		description: "Store essential information for reinforcement to combat forgetfulness."
 	},
 ]
