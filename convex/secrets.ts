@@ -17,8 +17,8 @@ export const saveUserAnswers = mutation({
     calmingMethods: v.string(),
   },
   handler: async (ctx, args) => {
-    await ctx.db.insert("users", {
-      name: args.fullName,
+    const secrets = {
+      fullName: args.fullName,
       age: args.age,
       memoryIssuesDuration: args.memoryIssuesDuration,
       diagnosis: args.diagnosis,
@@ -30,7 +30,16 @@ export const saveUserAnswers = mutation({
       importantDatesReminder: args.importantDatesReminder,
       alertOnWandering: args.alertOnWandering,
       calmingMethods: args.calmingMethods,
-    });
+    }
+
+    // Get user
+    const userId = await ctx.auth.getUserIdentity().then(result => result?.tokenIdentifier);
+    const user = await ctx.db.query("users").filter(q => q.eq(q.field("tokenIdentifier"), userId)).first();
+
+    if(!user) throw new Error("User not found");
+
+    await ctx.db.patch(user._id, { secrets: secrets },);
+
     return { success: true };
   },
 });
