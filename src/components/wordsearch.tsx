@@ -112,22 +112,19 @@ export function WordSearch() {
   };
 
   const handleFinish = async () => {
-    const score = selectedCells.size;
-    await saveScore({ score });
-    alert(`Game finished! Your score: ${score}`);
+    await saveScore({ score: selectedCells.size });
+    alert(`Game finished! Your score: ${selectedCells.size}`);
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-4xl font-bold mb-6 text-center text-blue-600">Word Search Puzzle</h1>
-      <div className="grid grid-cols-10 gap-2 mb-8 max-w-md mx-auto">
+    <div>
+      <h1>Word Search Puzzle</h1>
+      <div className="grid">
         {grid.map((row, rowIndex) => (
           row.map((letter, colIndex) => (
             <button 
               key={`${rowIndex}-${colIndex}`} 
-              className={`w-10 h-10 flex items-center justify-center border-2 border-gray-300 text-2xl font-bold rounded-md transition-colors duration-200 ${
-                selectedCells.has(`${rowIndex}-${colIndex}`) ? 'bg-yellow-200' : 'bg-white'
-              }`}
+              className={selectedCells.has(`${rowIndex}-${colIndex}`) ? 'selected' : ''}
               onClick={() => toggleCellSelection(rowIndex, colIndex)}
             >
               {letter}
@@ -135,20 +132,15 @@ export function WordSearch() {
           ))
         ))}
       </div>
-      <div className="max-w-md mx-auto">
-        <h2 className="text-3xl font-bold mb-4 text-green-600">Words to Find:</h2>
-        <ul className="list-disc list-inside">
+      <div>
+        <h2>Words to Find:</h2>
+        <ul>
           {words.map((word, index) => (
-            <li key={index} className="text-2xl mb-2">{word}</li>
+            <li key={index}>{word}</li>
           ))}
         </ul>
       </div>
-      <button 
-        onClick={handleFinish}
-        className="mt-6 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors duration-200"
-      >
-        Finish Game
-      </button>
+      <button onClick={handleFinish}>Finish Game</button>
     </div>
   );
 }
