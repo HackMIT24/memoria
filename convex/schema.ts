@@ -11,12 +11,22 @@ export default defineSchema({
 				label: v.string()
 			})
 		),
-		secrets: v.optional(v.array(
+		secrets: v.optional(
 			v.object({
-				prompt: v.string(),
-				answer: v.string(),
+				fullName: v.string(),
+				age: v.string(),
+				memoryIssuesDuration: v.string(),
+				diagnosis: v.string(),
+				livingSituation: v.string(),
+				caregiver: v.string(),
+				emergencyContacts: v.string(),
+				dailyRoutine: v.string(),
+				dietaryRestrictions: v.string(),
+				importantDatesReminder: v.string(),
+				alertOnWandering: v.string(),
+				calmingMethods: v.string(),
 			})
-		)),
+		),
 	}).index("by_token", ["tokenIdentifier"]),
 	journal: defineTable({
 		title: v.string(),
