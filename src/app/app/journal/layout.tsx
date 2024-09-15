@@ -1,3 +1,5 @@
+'use client'
+
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
 import Link from "next/link";
@@ -22,8 +24,7 @@ function JournalSidebarEntry({ journalEntry }: { journalEntry: JournalEntry}) {
 
 
 export default function JournalLayout({ children }: { children: React.ReactNode }) {
-	const user = useQuery(api.user.default);
-	const journalPages: JournalEntry[] | undefined = user ? useQuery(api.journal.getAll, { userId: user.tokenIdentifier }) : undefined;
+	const journalPages = useQuery(api.journal.getAll);
 
 	return (
 		<div>

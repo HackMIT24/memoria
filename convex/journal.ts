@@ -4,10 +4,19 @@ import {JournalEntry} from "../src/data/JournalEntry";
 
 
 export const getAll = query({
-	args: { userId: v.string() },
-	handler: async (ctx, { userId }) => {
+	args: { },
+	handler: async (ctx) => {
+		const userObject = await ctx.auth.getUserIdentity();
+		const userId = userObject?.tokenIdentifier;
 		// Filter by user ID
-		return await ctx.db.query("journal").filter(q => q.eq(q.field("user"), userId)).collect();
+		const dbJournals = await ctx.db.query("journal").filter(q => q.eq(q.field("user"), userId)).collect();
+		return dbJournals.map(dbObject => new JournalEntry(
+			dbObject._id,
+			dbObject.user,
+			dbObject.title,
+			new Date(dbObject.date),
+			dbObject.content
+		))
 	},
 });
 
@@ -29,8 +38,11 @@ export const getSingle = query({
 });
 
 export const createEntry = mutation({
-	args: { title: v.string(), content: v.string(), date: v.string(), userId: v.string() },
-	handler: async(ctx, { title, content, date }) => {
-		const user = ctx.db.query("users").first( )
+	args: { title: v.string(), content: v.string(), date: v.string() },
+	handler: async(ctx, { title, content, date }): Promise<string> => {
+		const userId = await ctx.auth.getUserIdentity();
+		const userId_ = await ctx.db.query("users").filter(q => q.eq(q.field("tokenIdentifier"), userId?.tokenIdentifier)).first().then(user => user?._id);
+		if(userId_ != undefined) return await ctx.db.insert("journal", { title, content, date, user: userId_ });
+		else throw new Error("User was not found in database");
 	}
 })
