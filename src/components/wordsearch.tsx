@@ -85,10 +85,12 @@ export function WordSearch() {
   const [selectedCells, setSelectedCells] = useState<Set<string>>(new Set());
 
   // Fetch words from Convex
-  const wordList = useQuery(api.words.getWords) || [];
+  // const wordList = useQuery(api.words.getWords) || [];
+  const wordList = ["cat", "dog", "bird", "thermodynamical", "stochastic", "differentiable", "manifold", "algebraic", "ring"]
 
   // Save score mutation
-  const saveScore = useMutation(api.scores.saveScore);
+  // const saveScore = useMutation(api.scores.saveScore);
+  const saveScore = ({ score }: { score: number }) => score + 2;
 
   useEffect(() => {
     if (wordList.length > 0) {

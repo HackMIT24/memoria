@@ -22,7 +22,9 @@ export const createUserIfNotExists = mutation({
 		if (existingUser !== null) {
 			return
 		}
-		await ctx.db.insert('users', {name: user?.name ?? "User", tokenIdentifier, memories: []})
+		await ctx.db.insert('users', {
+            name: user?.name ?? "User", tokenIdentifier, memories: [], secrets: []
+        })
 
 	}
 })

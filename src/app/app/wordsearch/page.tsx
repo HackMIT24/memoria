@@ -1,7 +1,6 @@
 // src/app/wordsearch/page.tsx
-
-import { WordSearchGenerator } from '../../components/wordsearch';
+import {WordSearch} from "@/components/wordsearch";
 
 export default function WordSearchPage() {
-  return <WordSearchGenerator />;
+  return <WordSearch />;
 }
