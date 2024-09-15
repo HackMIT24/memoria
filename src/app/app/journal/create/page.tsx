@@ -2,8 +2,8 @@
 
 // JournalForm.tsx
 import React from 'react';
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
+import {useForm} from 'react-hook-form';
+import {zodResolver} from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form";
 import {Button} from "@/components/ui/button";
@@ -14,8 +14,8 @@ import {api} from "../../../../../convex/_generated/api";
 
 // Define validation schema using Zod
 const journalSchema = z.object({
-	title: z.string().min(1, { message: 'Title is required' }),
-	content: z.string().min(1, { message: 'Content is required' }),
+	title: z.string().min(1, {message: 'Title is required'}),
+	content: z.string().min(1, {message: 'Content is required'}),
 });
 
 // Define the form data types
@@ -47,7 +47,7 @@ const JournalForm: React.FC = () => {
 					<FormField
 						control={form.control}
 						name="title"
-						render={({ field }) => (
+						render={({field}) => (
 							<FormItem className={'mb-3'}>
 								<FormLabel>Title</FormLabel>
 								<FormControl>
@@ -61,7 +61,7 @@ const JournalForm: React.FC = () => {
 					<FormField
 						control={form.control}
 						name="content"
-						render={({ field }) => (
+						render={({field}) => (
 							<FormItem className={'mb-3'}>
 								<FormLabel>Content</FormLabel>
 								<FormControl>
