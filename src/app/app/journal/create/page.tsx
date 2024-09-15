@@ -37,40 +37,43 @@ const JournalForm: React.FC = () => {
 		console.log("I was called!")
 		const id = create(formData);
 
+		return id;
 	};
 
 	return (
 		<div className={'flex flex-col'}>
-			<Form {...form} onSubmit={onSubmit} className="space-y-6 w-max">
-				<FormField
-					control={form.control}
-					name="title"
-					render={({ field }) => (
-						<FormItem className={'mb-3'}>
-							<FormLabel>Title</FormLabel>
-							<FormControl>
-								<Input placeholder="Enter journal title" {...field} />
-							</FormControl>
-							<FormMessage>{form.formState.errors.title?.message}</FormMessage>
-						</FormItem>
-					)}
-				/>
+			<Form {...form}>
+				<form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 w-max">
+					<FormField
+						control={form.control}
+						name="title"
+						render={({ field }) => (
+							<FormItem className={'mb-3'}>
+								<FormLabel>Title</FormLabel>
+								<FormControl>
+									<Input placeholder="Enter journal title" {...field} />
+								</FormControl>
+								<FormMessage>{form.formState.errors.title?.message}</FormMessage>
+							</FormItem>
+						)}
+					/>
 
-				<FormField
-					control={form.control}
-					name="content"
-					render={({ field }) => (
-						<FormItem className={'mb-3'}>
-							<FormLabel>Content</FormLabel>
-							<FormControl>
-								<Textarea placeholder="Write your journal entry" rows={6} {...field} />
-							</FormControl>
-							<FormMessage>{form.formState.errors.content?.message}</FormMessage>
-						</FormItem>
-					)}
-				/>
+					<FormField
+						control={form.control}
+						name="content"
+						render={({ field }) => (
+							<FormItem className={'mb-3'}>
+								<FormLabel>Content</FormLabel>
+								<FormControl>
+									<Textarea placeholder="Write your journal entry" rows={6} {...field} />
+								</FormControl>
+								<FormMessage>{form.formState.errors.content?.message}</FormMessage>
+							</FormItem>
+						)}
+					/>
 
-				<Button type="submit">Submit</Button>
+					<Button type="submit">Submit</Button>
+				</form>
 			</Form>
 		</div>
 	);

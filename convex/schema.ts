@@ -5,6 +5,12 @@ export default defineSchema({
 	users: defineTable({
 		name: v.string(),
 		tokenIdentifier: v.string(),
+		memories: v.array(
+			v.object({
+				url: v.string(),
+				label: v.string()
+			})
+		)
 	}).index("by_token", ["tokenIdentifier"]),
 	journal: defineTable({
 		title: v.string(),
