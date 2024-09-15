@@ -55,11 +55,6 @@ const aboutComponents: { title: string; href: string; description: string }[] = 
 		href: "/about/team",
 		description: "Meet the team behind Memoria."
 	},
-	{
-		title: "Meet the Team",
-		href: "/about/team",
-		description: "Meet the team behind Memoria."
-	}
 ]
 
 export default function Navbar() {
