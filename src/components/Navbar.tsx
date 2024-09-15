@@ -38,8 +38,8 @@ const featuresComponents: { title: string, href: string, description: string }[]
 		description: "Chat with a custom AI assistant, trained with your background, for any type of assistance."
 	},
 	{
-		title: "Secret Journal",
-		href: "/app/secrets",
+		title: "Secret Drawer",
+		href: "/app/secrets/new",
 		description: "Store essential information for reinforcement to combat forgetfulness."
 	},
 ]
